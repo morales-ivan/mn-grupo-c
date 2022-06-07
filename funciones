@@ -1,0 +1,19 @@
+n = input("Tamanio = ")
+A = cargoMatriz(n)
+
+A = {
+   1: {1: 0}
+}
+   for i in range(1, tamanio + 1):
+      for j in range(1, tamanio + 1):
+         try:
+            A[i]
+         except:
+           A[i] = {1: 0}
+         A[i][j] = float(input("A[" + str(i) + "-" + str(j) + "]= "))
+
+
+b = cargaMatrizb(n)
+tol = input("Tolerancia = ")
+N = input(Max iteraciones)
+X0 = cargarMatriz(n)
