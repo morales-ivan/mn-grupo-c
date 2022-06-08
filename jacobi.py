@@ -33,7 +33,7 @@ def esMatrizDominante(matriz):
 			if i == j:
 				continue
 			suma += abs(matriz[i][j])
-		if(suma <= valorDiagonal):
+		if(suma >= valorDiagonal):
 			return False
 	return True
 
@@ -41,3 +41,6 @@ def esMatrizDominante(matriz):
 n = int(input("Tamanio = "))
 A = cargaMatriz(n)
 b = cargarColumna(n)
+if(not esMatrizDominante(A)):
+	print("A no es matriz diagonal estrictamente dominante")
+	exit()
