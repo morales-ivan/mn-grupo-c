@@ -1,6 +1,12 @@
 from tkinter.tix import Tree
 import numpy as np
 
+def printMatriz(d, space=5, fill='0'):
+    strs = ' '.join('{{{0}:^{1}}}'.format(str(p), str(space)) for p in range(len(d) + 1))
+    std = sorted(d)
+    print(strs.format(" ", *std))
+    for x in std:
+        print(strs.format(x, *(d[x].get(y, fill) for y in std)))
 
 def cargarMatriz(nombre, n):
 	matriz = {
@@ -22,8 +28,8 @@ def modulo(xk):
     elem = np.sqrt(elem)
     return elem 
 
-def calcTol(xk, xk1, tolerancia):
-    return ((modulo(xk)-modulo(xk1)) < tolerancia)
+def calcTol(xk, xkm1, tolerancia):
+    return ((modulo(xk)-modulo(xkm1)) < tolerancia)
 
 def cargarColumna(nombre, n):
 	col = {
@@ -95,3 +101,15 @@ if N > 10000:
 X0 = cargarColumna("X0", n)
 
 met = elegirMetodo()
+
+k = 1
+xk = matrizNula(n)
+xkm1 = X0
+for k in range(1, N+1):
+ 	for i in range(1, N+1):
+		xk = calculoXK(A, b, i, met)
+ 	if not calcTol(xk, xkm1):
+    	print("Se llego al limite de tolerancia\nResultado:\n")
+		printMatriz(xk)
+	else:
+		xkm1 = xk
