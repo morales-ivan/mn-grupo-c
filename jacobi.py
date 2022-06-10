@@ -1,3 +1,4 @@
+from tkinter.tix import Tree
 import numpy as np
 
 
@@ -56,6 +57,17 @@ def elegirMetodo():
         met = int(input(print("Ingrese un numero de metodo valido: ")))
     return met
 
+def matrizNula(n):
+    matNula = {1: {1: 0}}
+    for i in range(1, n+1):
+        for j in range(1, n+1):
+            try:
+                matNula[i]
+            except:
+                matNula[i] = {1: 0}
+            matNula[i][j] = 0
+    return matNula	
+     
 n = int(input("Tamanio = "))
 A = cargarMatriz("A", n)
 
