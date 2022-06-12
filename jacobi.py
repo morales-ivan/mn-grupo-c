@@ -79,8 +79,11 @@ def calculoXKI(A, b, xk, xkm1, i, met):
     xk[i] = 0
     xk[i] += b[i]/A[i][i]
     for j in range(1, i):
+        # ACA PONER UN IF POR met == 1 para Jacobi
+        # Y else para Gauss-Seidel
+        # La cuenta de abajo es Jacobi.
         xk[i] -= (A[i][j]*xkm1[j]/A[i][i])
-    for j in range(i+1, len(A)+1):    	
+    for j in range(i+1, len(A)+1):    
         xk[i] -= (A[i][j]*xkm1[j]/A[i][i])
     return xk[i]
 	
