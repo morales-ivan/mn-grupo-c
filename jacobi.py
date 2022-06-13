@@ -15,18 +15,25 @@ def cargarMatriz(nombre, n):
 			matriz[i][j] = float(input(nombre + "[" + str(i) + "-" + str(j) + "]= "))
 	return matriz
 
-def modulo(xk):
+def moduloVector(v):
     elem = 0
-    for i in range (1,len(xk)+1):
-        # print("elem = ", elem, " += xk[", i, "]^2 = ", xk[i] * xk[i])
-        elem += xk[i] * xk[i]
+    for i in range (1,len(v)+1):
+        # print("elem = ", elem, " += v[", i, "]^2 = ", v[i] * v[i])
+        elem += v[i] * v[i]
     # print("elem = ", elem, " = sqrt(", elem, ")")
     elem = np.sqrt(elem)
     # print(elem)
     return elem 
 
+def restaVector(v1, v2):
+    v = vectorNulo(len(v1))
+    for i in range(1, len(v1)+1):
+        v[i] = v1[i] - v2[i]
+    return v
+ 
 def calcTol(xk, xkm1, tolerancia):
-    return (abs(modulo(xk)-modulo(xkm1)) > tolerancia)
+    # print("|Xk - Xk-1| = ", moduloVector(restaVector(xk, xkm1)))
+    return (moduloVector(restaVector(xk, xkm1))) > tolerancia
 
 def cargarColumna(nombre, n):
 	col = {
@@ -152,9 +159,9 @@ xkm1 = copy(X0)
 while k < N+1:
     for i in range(1, len(A)+1):
         xk[i] = calculoXKI(A, b, xk, xkm1, i, met)
-    # if not calcTol(xk, xkm1, tol):
-    #     print("Se llego al limite de tolerancia\nResultado:\n")
-    #     break
-    xkm1 = xk
+    if not calcTol(xk, xkm1, tol):
+        print("Se llego al limite de tolerancia\nResultado:\n")
+        break
+    xkm1 = xk.copy()
     k+=1
 print(xk)
