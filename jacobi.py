@@ -97,7 +97,7 @@ def calculoXKI(A, b, xk, xkm1, i, met):
 default = input('Desea usar el sistema por default? SI/NO = ')
 
 if default == 'SI':
-    print("Tamaño = 2")
+    print("Tamanio = 2")
     n = 2
     print("Matriz A:")
     A = {
@@ -120,7 +120,7 @@ if default == 'SI':
     tol = 0.1
     print("Tolerancia = 0.1")    
     N = 30
-    print("Número máximo de iteraciones = 30")      
+    print("Numero maximo de iteraciones = 30")      
     X0 = {
 		1: 0,
 		2: 0
@@ -137,7 +137,7 @@ else:
 	b = cargarColumna("b", n)
 	tol = float(input("Tolerancia = "))
 	if tol < 0.0000001:
-		print("La tolerancia es muy pequeña")
+		print("La tolerancia es muy pequenia")
 		exit()
 	
 	if tol > 1:
