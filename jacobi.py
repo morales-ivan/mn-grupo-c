@@ -145,7 +145,7 @@ else:
 		exit()
 	N = int(input("Numero maximo de Iteraciones = "))
 	if N > 10000:
-		print("El numero de iteraciones es mas que 10000")
+		print("El numero de iteraciones es muy grande")
 		exit()
 	X0 = cargarColumna("X0", n)
 	met = elegirMetodo()
